@@ -7,6 +7,6 @@ public class EntreEscenas : MonoBehaviour
 {
     public void BtwnNewScene()
     {
-        SceneManager.LoadScene("Escena 2");
+        SceneManager.LoadScene("Escena 2");     // Carga la escena 2
     }
 }
