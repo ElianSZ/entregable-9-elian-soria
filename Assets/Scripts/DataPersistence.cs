@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class DataPersistence : MonoBehaviour
 {
-    public float x, y, z;
+    // public GameObject player;
+    public float PosX;
+    public float PosY;
+    public float PosZ;
 
-    public void Save()
+    public Vector3 pos;
+
+    void Start()
     {
-        // Guarda la posición del player
-
-        x = transform.position.x;
-        y = transform.position.y;
-        z = transform.position.z;
-
-        PlayerPrefs.SetFloat("x", x);
-        PlayerPrefs.SetFloat("y", y);
-        PlayerPrefs.SetFloat("z", z);
+        LoadPlayerPos();
     }
 
-    public void Load()
+    void Update()
     {
-        // Carga la posición del player
+        SavePlayerPos();
+    }
 
-        x = PlayerPrefs.GetFloat("x");
-        y = PlayerPrefs.GetFloat("y");
-        z = PlayerPrefs.GetFloat("z");
+    public void SavePlayerPos()
+    {
+        PlayerPrefs.SetFloat("PositionX", transform.position.x);
+        PlayerPrefs.SetFloat("PositionY", transform.position.y);
+        PlayerPrefs.SetFloat("PositionZ", transform.position.z);
+        Debug.Log("Data saved");
+    }
 
-        Vector3 LoadPosition = new Vector3(x, y, z);
-        transform.position = LoadPosition;
+    public void LoadPlayerPos()
+    {
+        PosX = PlayerPrefs.GetFloat("PositionX");
+        PosY = PlayerPrefs.GetFloat("PositionY");
+        PosZ = PlayerPrefs.GetFloat("PositionZ");
+
+        pos.x = PosX;
+        pos.y = PosY;
+        pos.z = PosZ;
+
+        transform.position = pos;
     }
 }
